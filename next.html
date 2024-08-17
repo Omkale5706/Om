@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Portfolio</title>
+    <style>
+       body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #000;
+            color: #e7edf1;
+            position: relative;
+        }
+
+        /* Space Animation with Small Stars */
+        #space {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #000, #1a1a1a, #000); /* Subtle gradient background */
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 10s infinite ease-in-out alternate;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+        }
+
+
+        @keyframes twinkle {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0.3;
+            }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #666;
+        }
+
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: rgb(240, 240, 244); 
+        }
+
+        #intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+            height: 100vh;
+            box-sizing: border-box;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #intro img {
+            max-width: 50%;
+            border-radius: 50%;
+            border: 3px solid #f7f5f5;
+            margin: 20px;
+        }
+
+        #intro-text {
+            max-width: 40%;
+            color: #e3dddd;
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        #about-me {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        #about-me img {
+            max-width: 50%;
+            border: 1px solid #080000;
+            border-radius: 50%;
+        }
+
+        #about-me-text {
+            max-width: 60%;
+        }
+
+        #skills {
+    padding: 50px;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.skill-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    width: calc(50% - 10px); /* Two cards per row */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.skill-icon {
+    flex: 0 0 50px;
+    margin-right: 20px;
+}
+
+.skill-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.skill-content {
+    flex: 1;
+}
+
+.skill-content h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #e7edf1;
+}
+
+.progress-bar {
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.progress {
+    background-color: #4caf50; /* Use different colors for different skills */
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+.skill-percentage {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+        #projects {
+    padding: 50px;
+    background-color: #1a1a1a; /* Darker background to highlight the project cards */
+    color: #fff;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.project-card {
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    width: calc(50% - 10px); /* Two cards per row */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.project-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.project-content h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #e7edf1;
+}
+
+.project-content p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #e7edf1;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.project-link:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer img {
+            max-width: 50%;
+            border-radius: 50%;
+            border: 3px solid #f7f5f5;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="space"></div>
+
+    <header>
+        <div id="logo"></div>
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#about-me">ABOUT</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <div id="intro">
+        <div id="intro-text">
+           <h3>Hello, it's Me</h3>
+           <h1><b>OM KALE</b></h1>
+           <p>I am a student at Sinhgad College of Engineering</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/om_kale_5706?igsh=MWZjeGhvN3c2amp4OQ==" target="_blank">
+                    <img src="https://logodix.com/logo/836944.png" alt="Instagram" width="40" height="40">
+                </a>
+                <a href="https://www.youtube.com/@OMKALE158" target="_blank">
+                    <img src="https://th.bing.com/th/id/OIP.gXDAsM3eyXW3wlU8IMGrfgHaHa?rs=1&pid=ImgDetMain" alt="YouTube" width="40" height="40">
+                </a>
+                <a href="https://www.linkedin.com/in/om-kale-b2b27729b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                    <img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG29.png" alt="LinkedIn" width="40" height="40">
+                </a>
+            </div>
+        </div>
+        <img src="image/Om image.jpg" alt="Your Image">
+    </div>
+
+    <section>
+        <div id="about-me">
+            <img src="image/om.jpg" alt="Another Image">
+            <div id="about-me-text">
+                <h2>About Me</h2>
+                <p>My name is Om Kale, and I am currently a second-year engineering student at Sinhgad College of Engineering, I have consistently demonstrated my dedication and commitment to academics, achieving an SGPA of 8.27 in my first semester and 9.00 in my second semester of the first year.
+                    In my first year, I worked on a project involving the development of a smart door lock system, which showcased my ability to apply engineering concepts to real-world problems. This project further ignited my interest in the intersection of hardware and software.
+                    I am on track G graduate with honors, aiming to maintain and exceed my current academic performance. My goal is to leverage my strong academic foundation and hands-on project experience to excel in the field of engineering and web development. I am committed to continuous learning and am eagerto take on new challenges and opportunities that will allow me to grow both personally and professionally.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="https://logos-download.com/wp-content/uploads/2017/07/HTML5_badge.png" alt="HTML Icon">
+                </div>
+                <div class="skill-content">
+                    <h3>HTML</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%;"></div>
+                    </div>
+                    <span class="skill-percentage">90%</span>
+                </div>
+            </div>
+            
+    
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="https://th.bing.com/th/id/OIP.XdywKlEb4AaiPdhw1xXyWwHaHa?w=480&h=480&rs=1&pid=ImgDetMain" alt="CSS Icon">
+                </div>
+                <div class="skill-content">
+                    <h3>CSS</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%;"></div>
+                    </div>
+                    <span class="skill-percentage">80%</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="https://logodownload.org/wp-content/uploads/2022/04/javascript-logo-1.png" alt="Javascript">
+                </div>
+                <div class="skill-content">
+                    <h3>Jvascript</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 95%;"></div>
+                    </div>
+                    <span class="skill-percentage">95%</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="https://toppng.com/uploads/preview/c-programming-icon-c-programming-language-logo-11562945679duaxtn3yq0.png" alt="C Icon">
+                </div>
+                <div class="skill-content">
+                    <h3>C</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%;"></div>
+                    </div>
+                    <span class="skill-percentage">90%</span>
+                </div>
+            </div>
+    
+            <!-- Add more skills as needed -->
+        </div>
+    </section>
+    
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://www.es.osaka-u.ac.jp/en/images/image04.jpg');"></div>
+                <div class="project-content">
+                    <h3>Smart door lock system</h3>
+                    <p>A smart door lock system integrates technology to enhance security and convenience. Using components like an Arduino Uno, 16x2 LCD display, 4x4 Matrix Keypad, and a WiFi module (e.g., ESP8266), you can create a secure access control mechanism. The system allows wireless control, automatic unlocking via Bluetooth, and notifications for door activity. For detailed tutorials and project ideas, explore resources like Arduino Project Hub and Instructables. Feel free to dive into these guides and start building your own smart door lock!</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+    
+            
+    
+            <!-- Add more projects as needed -->
+        </div>
+    </section>
+    
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/om_kale_5706?igsh=MWZjeGhvN3c2amp4OQ==" target="_blank">
+                <img src="https://logodix.com/logo/836944.png" alt="Instagram" width="40" height="40">
+            </a>
+            <a href="https://www.youtube.com/@OMKALE158" target="_blank">
+                <img src="https://th.bing.com/th/id/OIP.gXDAsM3eyXW3wlU8IMGrfgHaHa?rs=1&pid=ImgDetMain" alt="YouTube" width="40" height="40">
+            </a>
+            <a href="https://www.linkedin.com/in/om-kale-b2b27729b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                <img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG29.png" alt="LinkedIn" width="40" height="40">
+            </a>
+        </div>
+        <p>&copy; 2024 OM Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Generate stars for the 3D space animation
+        const space = document.getElementById('space');
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.width = `${Math.random() * 2 + 1}px`; // Random star size between 1px to 3px
+            star.style.height = star.style.width; // Maintain the star as a perfect circle
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random speed between 2s to 5s
+            star.style.opacity = Math.random();
+            space.appendChild(star);
+
+            setTimeout(() => {
+                space.removeChild(star);
+            }, 5000);
+        }
+
+        for (let i = 0; i < 200; i++) { // Increased the number of stars
+            createStar();
+        }
+
+        setInterval(createStar, 200);
+    </script>
+</body>
+</html>
